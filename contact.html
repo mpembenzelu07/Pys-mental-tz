@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychezone International | Contact & Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ==== GLOBAL STYLES ==== */
+        :root {
+            --primary-soul: #5D3FD3;
+            --calm-mind: #6AC0C0;
+            --hope-glow: #FF9A76;
+            --dark-sanctuary: #0A0A1A;
+            --light-bg: #F8F9FF;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--dark-sanctuary);
+            color: white;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ==== LANGUAGE SWITCHER ==== */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            gap: 10px;
+            background: rgba(10, 10, 26, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 10px;
+            border: 1px solid rgba(93, 63, 211, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .lang-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            border-color: var(--primary-soul);
+            box-shadow: 0 0 20px var(--primary-soul);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(45deg, var(--primary-soul), #7B5FE8);
+            border-color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(93, 63, 211, 0.7); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(93, 63, 211, 0); }
+        }
+
+        /* ==== NAVIGATION ==== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 10, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 5%;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--primary-soul);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary-soul), var(--calm-mind));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .nav-link:hover:before {
+            left: 100%;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(93, 63, 211, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* ==== CONTACT HERO ==== */
+        .contact-hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            padding-top: 120px;
+            position: relative;
+            background: linear-gradient(135deg, rgba(106, 192, 192, 0.15) 0%, transparent 100%);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, white, var(--calm-mind));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .urgency-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 154, 118, 0.2);
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            margin-top: 1rem;
+            color: var(--hope-glow);
+            font-weight: 500;
+        }
+
+        /* ==== CONTACT GRID ==== */
+        .contact-grid-section {
+            padding: 4rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            color: white;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary-soul), var(--calm-mind));
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* ==== CONTACT INFO ==== */
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: fit-content;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(93, 63, 211, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-soul);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            margin-bottom: 0.5rem;
+            color: var(--calm-mind);
+            font-size: 1.2rem;
+        }
+
+        .contact-details p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 0.5rem;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .email-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, var(--primary-soul), #7B5FE8);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-top: 0.5rem;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .email-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(93, 63, 211, 0.3);
+        }
+
+        /* ==== BOOKING FORM ==== */
+        .booking-form {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: fit-content;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: white;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-soul);
+            background: rgba(93, 63, 211, 0.1);
+            box-shadow: 0 0 20px rgba(93, 63, 211, 0.2);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn-submit {
+            background: linear-gradient(45deg, var(--primary-soul), #7B5FE8);
+            color: white;
+            width: 100%;
+            justify-content: center;
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(93, 63, 211, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(93, 63, 211, 0.6); }
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(93, 63, 211, 0.4);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+            animation: none;
+        }
+
+        /* ==== HOURS SECTION ==== */
+        .hours-section {
+            padding: 6rem 5%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .hours-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .hours-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--calm-mind);
+        }
+
+        .hours-icon {
+            font-size: 2.5rem;
+            color: var(--hope-glow);
+            margin-bottom: 1rem;
+        }
+
+        .hours-highlight {
+            background: rgba(93, 63, 211, 0.2);
+            border: 1px solid var(--primary-soul);
+        }
+
+        /* ==== MAP SECTION ==== */
+        .map-section {
+            padding: 6rem 5%;
+        }
+
+        .map-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            height: 400px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, rgba(93, 63, 211, 0.1), rgba(106, 192, 192, 0.1));
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .map-placeholder i {
+            font-size: 4rem;
+            color: var(--primary-soul);
+            margin-bottom: 1rem;
+        }
+
+        .map-placeholder h3 {
+            color: var(--calm-mind);
+            margin-bottom: 0.5rem;
+        }
+
+        /* ==== FAQ SECTION ==== */
+        .faq-section {
+            padding: 6rem 5%;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: white;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-answer {
+            padding-bottom: 1.5rem;
+            max-height: 500px;
+        }
+
+        .faq-toggle {
+            color: var(--primary-soul);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        /* ==== URGENCY CTA ==== */
+        .urgency-cta {
+            padding: 6rem 5%;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 154, 118, 0.1) 0%, transparent 100%);
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ==== FOOTER ==== */
+        footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 4rem 5% 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-title {
+            color: var(--calm-mind);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--primary-soul);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary-soul);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ==== RESPONSIVE ==== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+        }
+
+        /* ==== ANIMATIONS ==== */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes ripple {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        .animate-in {
+            animation: slideUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- LANGUAGE SWITCHER -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="sw">SW</button>
+        <button class="lang-btn" data-lang="mix">MX</button>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-brain logo-icon"></i>
+                <div class="logo-text">PSYCHEZONE</div>
+            </a>
+
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="therapies.html" class="nav-link">Therapies</a>
+                <a href="workshops.html" class="nav-link">Workshops</a>
+                <a href="confessional.html" class="nav-link">Confessional</a>
+                <a href="contact.html" class="nav-link active">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTACT HERO -->
+    <section class="contact-hero">
+        <div class="hero-content">
+            <h1 class="hero-title">BEGIN YOUR HEALING JOURNEY</h1>
+            <p class="hero-subtitle">
+                Reach out today. We're here to listen, understand, and guide you toward mental wellness. 
+                Available in English and Swahili for your comfort and understanding.
+            </p>
+            <div class="urgency-badge">
+                <i class="fas fa-clock"></i>
+                <span>Emergency Support Available 24/7</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT GRID -->
+    <section class="contact-grid-section">
+        <h2 class="section-title">GET IN TOUCH</h2>
+        
+        <div class="contact-grid">
+            <!-- CONTACT INFO -->
+            <div class="contact-info">
+                <h3 class="form-title">Contact Information</h3>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Our Location</h4>
+                        <p>Mabatini Road, Dar es Salaam, Tanzania</p>
+                        <p style="color: var(--calm-mind); font-size: 0.9rem;">
+                            <i class="fas fa-star"></i> In-person & Online Sessions Available
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Call Us</h4>
+                        <p>+255 123 456 789</p>
+                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">
+                            Monday - Saturday, 8AM - 6PM
+                        </p>
+                        <a href="tel:+255123456789" class="whatsapp-btn">
+                            <i class="fas fa-phone"></i> Call Now
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Email Us</h4>
+                        <p>hello@psychezone.co.tz</p>
+                        <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem;">
+                            Response within 24 hours
+                        </p>
+                        <a href="mailto:hello@psychezone.co.tz" class="email-btn">
+                            <i class="fas fa-paper-plane"></i> Send Email
+                        </a>
+                    </div>
+                </div>
+
+                <div class="contact-item" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0;">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>WhatsApp</h4>
+                        <p>Quick messaging for appointments and questions</p>
+                        <a href="https://wa.me/255123456789" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Message on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOOKING FORM -->
+            <div class="booking-form">
+                <h3 class="form-title">Book Appointment</h3>
+                
+                <form id="bookingForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name *</label>
+                            <input type="text" class="form-input" id="firstName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Last Name *</label>
+                            <input type="text" class="form-input" id="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Email *</label>
+                            <input type="email" class="form-input" id="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Phone *</label>
+                            <input type="tel" class="form-input" id="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Preferred Language *</label>
+                        <select class="form-select" id="language" required>
+                            <option value="">Select language</option>
+                            <option value="english">English</option>
+                            <option value="swahili">Swahili</option>
+                            <option value="both">Both (Code-switching)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Service Interested In *</label>
+                            <select class="form-select" id="service" required>
+                                <option value="">Select service</option>
+                                <option value="cbt">Cognitive Behavioral Therapy</option>
+                                <option value="trauma">Trauma Healing</option>
+                                <option value="family">Family Therapy</option>
+                                <option value="corporate">Corporate Wellness</option>
+                                <option value="workshop">Workshop</option>
+                                <option value="initial">Initial Consultation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">Preferred Session Type</label>
+                            <select class="form-select" id="sessionType">
+                                <option value="">Select type</option>
+                                <option value="in-person">In-person</option>
+                                <option value="online">Online</option>
+                                <option value="hybrid">Hybrid</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">What brings you to therapy? *</label>
+                        <textarea class="form-textarea" id="message" placeholder="Briefly describe what you'd like to work on..." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Preferred Days/Times</label>
+                        <input type="text" class="form-input" id="preferredTime" placeholder="e.g., Weekdays after 4PM, Saturday mornings">
+                    </div>
+
+                    <div class="form-group" style="background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 10px; margin-top: 2rem;">
+                        <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                            <input type="checkbox" id="privacyPolicy" required style="width: auto;">
+                            <span>I agree to the privacy policy and understand this is a booking request *</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-submit" id="submitBtn">
+                        <i class="fas fa-paper-plane"></i> Submit Booking Request
+                    </button>
+
+                    <p style="text-align: center; margin-top: 1rem; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">
+                        We'll contact you within 24 hours to confirm your appointment.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOURS SECTION -->
+    <section class="hours-section">
+        <h2 class="section-title">OUR HOURS</h2>
+        
+        <div class="hours-grid">
+            <div class="hours-card">
+                <i class="fas fa-calendar-day hours-icon"></i>
+                <h3>Weekdays</h3>
+                <p>Monday - Friday</p>
+                <p style="color: var(--calm-mind); font-weight: 600; font-size: 1.2rem;">8:00 AM - 6:00 PM</p>
+            </div>
+            
+            <div class="hours-card hours-highlight">
+                <i class="fas fa-calendar-alt hours-icon"></i>
+                <h3>Saturdays</h3>
+                <p>Available by appointment</p>
+                <p style="color: var(--hope-glow); font-weight: 600; font-size: 1.2rem;">8:00 AM - 4:00 PM</p>
+            </div>
+            
+            <div class="hours-card">
+                <i class="fas fa-calendar-times hours-icon"></i>
+                <h3>Sundays</h3>
+                <p>Emergency sessions only</p>
+                <p style="color: rgba(255, 255, 255, 0.6);">By special arrangement</p>
+            </div>
+            
+            <div class="hours-card">
+                <i class="fas fa-globe hours-icon"></i>
+                <h3>Online Sessions</h3>
+                <p>Flexible scheduling</p>
+                <p style="color: var(--calm-mind);">Available across time zones</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP SECTION -->
+    <section class="map-section">
+        <h2 class="section-title">FIND US</h2>
+        
+        <div class="map-container">
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt"></i>
+                <h3>Mabatini Road, Dar es Salaam</h3>
+                <p style="text-align: center; max-width: 400px; color: rgba(255, 255, 255, 0.8); margin-top: 1rem;">
+                    Easy access from city center. Private, comfortable counseling spaces.
+                    Free parking available. Wheelchair accessible.
+                </p>
+                <a href="#" class="btn" style="background: linear-gradient(45deg, var(--primary-soul), #7B5FE8); color: white; margin-top: 1.5rem; padding: 0.8rem 1.5rem; width: auto;">
+                    <i class="fas fa-directions"></i> Get Directions
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section">
+        <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I know if therapy is right for me?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Therapy can help anyone dealing with life's challenges. If you're experiencing persistent sadness, anxiety, relationship issues, or simply want personal growth, therapy can provide valuable tools and support. We offer a free 30-minute consultation to help you decide.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is everything I say confidential?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, absolutely. All sessions are confidential under professional ethics and Tanzanian law. The only exceptions are if there's immediate risk of harm to yourself or others, which we would discuss with you first.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you accept insurance?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We work with several insurance providers. Please contact us with your insurance details, and we'll check your coverage. We also offer sliding scale fees for those without insurance.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What's the difference between English and Swahili therapy?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>The therapeutic techniques are the same, but language affects how we process emotions. Swahili sessions use culturally-relevant metaphors and concepts, while English sessions use international therapeutic terminology. Many clients choose to mix both languages.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How soon can I get an appointment?</span>
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We typically have availability within 1-3 days for new clients. Emergency sessions are available within 24 hours. After submitting your booking request, we'll contact you to schedule your first session.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- URGENCY CTA -->
+    <section class="urgency-cta">
+        <div class="cta-content">
+            <h2 class="section-title">URGENT SUPPORT</h2>
+            <p style="margin-bottom: 2rem; color: rgba(255, 255, 255, 0.8);">
+                If you're experiencing a mental health emergency or crisis, please reach out immediately. 
+                We provide 24/7 emergency support for those in urgent need.
+            </p>
+            <a href="tel:+255123456789" class="btn" style="background: linear-gradient(45deg, #FF6B6B, #FF9A76); color: white; padding: 1.2rem 3rem; width: auto;">
+                <i class="fas fa-phone-alt"></i> Emergency: +255 123 456 789
+            </a>
+            <p style="margin-top: 1rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6);">
+                Available 24 hours a day, 7 days a week
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h3 class="footer-title">Psychezone International</h3>
+                <p>Mabatini Rd, Dar es Salaam</p>
+                <p>Mon-Sat: 8AM - 6PM</p>
+                <p>⭐ 5.0 (12+ reviews)</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div>
+                <h3 class="footer-title">Quick Links</h3>
+                <div class="footer-links">
+                    <a href="index.html" class="footer-link">Home</a>
+                    <a href="therapies.html" class="footer-link">Therapy Services</a>
+                    <a href="workshops.html" class="footer-link">Workshops</a>
+                    <a href="confessional.html" class="footer-link">Anonymous Release</a>
+                    <a href="contact.html" class="footer-link">Contact Us</a>
+                </div>
+            </div>
+            <div>
+                <h3 class="footer-title">Digital Presence</h3>
+                <p>Follow us for mental wellness tips:</p>
+                <div class="social-links">
+                    <a href="#" class="social-link" style="background: #1877F2;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link" style="background: #E4405F;"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link" style="background: #25D366;"><i class="fab fa-whatsapp"></i></a>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.7);">
+                    Daily mental health insights
+                </p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2023 Psychezone International. Mental health clinic & counseling services.</p>
+            <p>In Tanzania, mental health services are limited. We're changing that narrative.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Multi-language System
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const lang = this.getAttribute('data-lang');
+                createRipple(this);
+                
+                showNotification(
+                    lang === 'en' ? 'Switched to English - Contact form in English' :
+                    lang === 'sw' ? 'Imebadilishwa kwa Kiswahili - Fomu ya mawasiliano kwa Kiswahili' :
+                    'Now mixing languages - Contact form in both languages'
+                );
+                
+                updateContentForLanguage(lang);
+            });
+        });
+
+        // Form Validation and Submission
+        const bookingForm = document.getElementById('bookingForm');
+        const submitBtn = document.getElementById('submitBtn');
+        
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate form
+            if (!validateForm()) {
+                showNotification('Please fill in all required fields correctly.');
+                return;
+            }
+            
+            // Disable submit button
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            
+            // Get form data
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                language: document.getElementById('language').value,
+                service: document.getElementById('service').value,
+                sessionType: document.getElementById('sessionType').value,
+                message: document.getElementById('message').value,
+                preferredTime: document.getElementById('preferredTime').value
+            };
+            
+            // Create booking confirmation modal
+            showBookingConfirmation(formData);
+        });
+
+        // Form Validation Function
+        function validateForm() {
+            let isValid = true;
+            
+            // Check all required fields
+            const requiredFields = bookingForm.querySelectorAll('[required]');
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.style.borderColor = '#FF6B6B';
+                    
+                    // Add shake animation
+                    field.style.animation = 'shake 0.5s';
+                    setTimeout(() => {
+                        field.style.animation = '';
+                    }, 500);
+                } else {
+                    field.style.borderColor = '';
+                }
+                
+                // Email validation
+                if (field.type === 'email' && field.value) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(field.value)) {
+                        isValid = false;
+                        field.style.borderColor = '#FF6B6B';
+                        showNotification('Please enter a valid email address.');
+                    }
+                }
+                
+                // Phone validation
+                if (field.id === 'phone' && field.value) {
+                    const phoneRegex = /^[+]?[\d\s-]+$/;
+                    if (!phoneRegex.test(field.value)) {
+                        isValid = false;
+                        field.style.borderColor = '#FF6B6B';
+                        showNotification('Please enter a valid phone number.');
+                    }
+                }
+            });
+            
+            return isValid;
+        }
+
+        // Show Booking Confirmation
+        function showBookingConfirmation(formData) {
+            // Create modal overlay
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                backdrop-filter: blur(10px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                animation: fadeIn 0.3s ease;
+                padding: 1rem;
+            `;
+            
+            // Format date for confirmation
+            const now = new Date();
+            const bookingDate = new Date(now.getTime() + 24 * 60 * 60 * 1000); // Tomorrow
+            const formattedDate = bookingDate.toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            
+            modal.innerHTML = `
+                <div style="
+                    background: rgba(10, 10, 26, 0.95);
+                    border-radius: 20px;
+                    padding: 3rem;
+                    max-width: 500px;
+                    width: 100%;
+                    border: 1px solid var(--primary-soul);
+                    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+                    position: relative;
+                    animation: slideUp 0.5s ease;
+                ">
+                    <button class="close-modal" style="
+                        position: absolute;
+                        top: 1rem;
+                        right: 1rem;
+                        background: none;
+                        border: none;
+                        color: white;
+                        font-size: 1.5rem;
+                        cursor: pointer;
+                    ">×</button>
+                    
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <div style="
+                            width: 80px;
+                            height: 80px;
+                            background: linear-gradient(45deg, var(--calm-mind), #8AE0E0);
+                            border-radius: 50%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            margin: 0 auto 1.5rem;
+                            animation: pulse 2s infinite;
+                        ">
+                            <i class="fas fa-check" style="font-size: 2.5rem; color: white;"></i>
+                        </div>
+                        <h2 style="color: var(--calm-mind); margin-bottom: 1rem;">Booking Request Submitted!</h2>
+                        <p style="color: rgba(255, 255, 255, 0.8);">
+                            We'll contact you within 24 hours to confirm your appointment.
+                        </p>
+                    </div>
+                    
+                    <div style="
+                        background: rgba(255, 255, 255, 0.05);
+                        border-radius: 15px;
+                        padding: 1.5rem;
+                        margin-bottom: 2rem;
+                    ">
+                        <h3 style="color: var(--hope-glow); margin-bottom: 1rem; font-size: 1.1rem;">Booking Details:</h3>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                            <div style="color: rgba(255, 255, 255, 0.7);">Name:</div>
+                            <div style="color: white;">${formData.firstName} ${formData.lastName}</div>
+                            
+                            <div style="color: rgba(255, 255, 255, 0.7);">Service:</div>
+                            <div style="color: white;">${formData.service}</div>
+                            
+                            <div style="color: rgba(255, 255, 255, 0.7);">Language:</div>
+                            <div style="color: white;">${formData.language}</div>
+                            
+                            <div style="color: rgba(255, 255, 0.7);">Next Steps:</div>
+                            <div style="color: white;">We'll call you within 24 hours</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 1rem; justify-content: center;">
+                        <button id="confirmClose" style="
+                            padding: 1rem 2rem;
+                            background: linear-gradient(45deg, var(--primary-soul), #7B5FE8);
+                            color: white;
+                            border: none;
+                            border-radius: 30px;
+                            font-weight: 600;
+                            cursor: pointer;
+                        ">
+                            <i class="fas fa-home"></i> Return Home
+                        </button>
+                        <button class="close-modal" style="
+                            padding: 1rem 2rem;
+                            background: transparent;
+                            color: white;
+                            border: 2px solid var(--calm-mind);
+                            border-radius: 30px;
+                            font-weight: 600;
+                            cursor: pointer;
+                        ">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Add animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+                @keyframes slideUp {
+                    from { opacity: 0; transform: translateY(50px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-5px); }
+                    75% { transform: translateX(5px); }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Close modal handlers
+            modal.querySelectorAll('.close-modal').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    modal.style.animation = 'fadeIn 0.3s ease reverse';
+                    setTimeout(() => {
+                        modal.remove();
+                        style.remove();
+                        bookingForm.reset();
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Booking Request';
+                    }, 300);
+                });
+            });
+            
+            // Confirm and go home
+            modal.querySelector('#confirmClose').addEventListener('click', () => {
+                modal.remove();
+                style.remove();
+                bookingForm.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Booking Request';
+                window.location.href = 'index.html';
+            });
+            
+            // Close on background click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.querySelector('.close-modal').click();
+                }
+            });
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                
+                // Close other items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+                
+                // Create ripple effect
+                createRipple(question);
+            });
+        });
+
+        // Ripple Effect
+        function createRipple(element) {
+            const ripple = document.createElement('span');
+            const rect = element.getBoundingClientRect();
+            
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(106, 192, 192, 0.3);
+                transform: scale(0);
+                animation: ripple-animation 0.6s linear;
+                pointer-events: none;
+                z-index: 1000;
+            `;
+            
+            const size = Math.max(rect.width, rect.height);
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${rect.left + window.scrollX}px`;
+            ripple.style.top = `${rect.top + window.scrollY}px`;
+            
+            document.body.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        // Notification System
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.cssText = `
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background: rgba(10, 10, 26, 0.95);
+                backdrop-filter: blur(10px);
+                color: var(--calm-mind);
+                padding: 1rem 1.5rem;
+                border-radius: 15px;
+                border-left: 4px solid var(--primary-soul);
+                z-index: 10000;
+                animation: slideIn 0.3s ease, slideOut 0.3s ease 2.7s;
+                max-width: 300px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            `;
+            
+            document.body.appendChild(notification);
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+                @keyframes ripple-animation {
+                    to { transform: scale(4); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            setTimeout(() => {
+                notification.remove();
+                style.remove();
+            }, 3000);
+        }
+
+        // Language Content Update
+        function updateContentForLanguage(lang) {
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            const sectionTitle = document.querySelector('.section-title');
+            const formTitle = document.querySelector('.form-title');
+            
+            if (lang === 'sw') {
+                heroTitle.textContent = 'ANZA SAFARI YAKO YA UPONYAJI';
+                heroSubtitle.textContent = 'Wasiliana leo. Tuko hapa kusikiliza, kuelewa, na kukuongoza kuelekea ustawi wa akili. Inapatikana kwa Kiingereza na Kiswahili kwa faraja na uelewa wako.';
+                sectionTitle.textContent = 'WASILIANA NATU';
+                formTitle.textContent = 'Huduma ya Kuagiza';
+            } else if (lang === 'mix') {
+                heroTitle.textContent = 'BEGIN YOUR HEALING JOURNEY | ANZA SAFARI YAKO YA UPONYAJI';
+                heroSubtitle.textContent = 'Reach out today. Wasiliana leo. We\'re here to listen, understand, and guide you. Tuko hapa kusikiliza, kuelewa, na kukuongoza. Available in English and Swahili.';
+                sectionTitle.textContent = 'GET IN TOUCH | WASILIANA NATU';
+                formTitle.textContent = 'Book Appointment | Huduma ya Kuagiza';
+            } else {
+                heroTitle.textContent = 'BEGIN YOUR HEALING JOURNEY';
+                heroSubtitle.textContent = 'Reach out today. We\'re here to listen, understand, and guide you toward mental wellness. Available in English and Swahili for your comfort and understanding.';
+                sectionTitle.textContent = 'GET IN TOUCH';
+                formTitle.textContent = 'Book Appointment';
+            }
+        }
+
+        // Form Input Real-time Validation
+        document.querySelectorAll('.form-input, .form-select, .form-textarea').forEach(input => {
+            input.addEventListener('input', function() {
+                if (this.value.trim()) {
+                    this.style.borderColor = 'var(--calm-mind)';
+                } else {
+                    this.style.borderColor = '';
+                }
+            });
+            
+            input.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.style.borderColor = '#FF6B6B';
+                }
+            });
+        });
+
+        // Emergency Button Animation
+        const emergencyBtn = document.querySelector('.urgency-cta .btn');
+        if (emergencyBtn) {
+            setInterval(() => {
+                emergencyBtn.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    emergencyBtn.style.transform = 'scale(1)';
+                }, 500);
+            }, 3000);
+        }
+
+        // Scroll Animations
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            document.querySelectorAll('.contact-item, .hours-card, .faq-item').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            initScrollAnimations();
+            
+            setTimeout(() => {
+                showNotification('Ready to begin your healing journey? We\'re here to help.');
+            }, 1000);
+            
+            // Focus on first input
+            document.getElementById('firstName').focus();
+        });
+    </script>
+</body>
+</html>
